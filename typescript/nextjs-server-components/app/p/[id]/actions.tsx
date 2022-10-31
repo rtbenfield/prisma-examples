@@ -18,17 +18,16 @@ async function destroy(id: number): Promise<void> {
 
 export const PostActions: React.FC<{ post: Post }> = ({ post }) => {
   const router = useRouter()
-  if (post.published) {
-    return (
+  return (
+    <>
+      {!post.published && (
+        <button onClick={() => publish(post.id).then(() => router.push('/'))}>
+          Publish
+        </button>
+      )}
       <button onClick={() => destroy(post.id).then(() => router.push('/'))}>
         Delete
       </button>
-    )
-  } else {
-    return (
-      <button onClick={() => publish(post.id).then(() => router.push('/'))}>
-        Publish
-      </button>
-    )
-  }
+    </>
+  )
 }

@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown'
 import prisma from '../../../lib/prisma'
 import { makeSerializable } from '../../../lib/util'
 import { PostActions } from './actions'
+import styles from './styles.module.css'
 
 export default async function Post(props: { params: { id: string } }) {
   const post = await prisma.post.findUnique({
@@ -15,7 +16,7 @@ export default async function Post(props: { params: { id: string } }) {
   }
 
   return (
-    <div>
+    <div className={styles.page}>
       <h2>{title}</h2>
       <p>By {post?.author?.name || 'Unknown author'}</p>
       <ReactMarkdown children={post.content} />

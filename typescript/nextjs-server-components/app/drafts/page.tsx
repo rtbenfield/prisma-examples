@@ -12,7 +12,7 @@ export default async function Drafts() {
       <h1>Drafts</h1>
       <main>
         {drafts.map((post) => (
-          <div key={post.id} className="post">
+          <div key={post.id} className={styles.post}>
             <Post post={post} />
           </div>
         ))}

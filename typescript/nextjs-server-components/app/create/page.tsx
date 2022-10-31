@@ -55,7 +55,7 @@ const Draft: React.FC = () => {
           type="submit"
           value="Create"
         />
-        <Link className="back" href="/">
+        <Link className={styles.back} href="/">
           or Cancel
         </Link>
       </form>

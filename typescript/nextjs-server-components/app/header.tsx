@@ -1,30 +1,31 @@
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React from 'react'
-import styles from './styles.module.css'
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
+import styles from './styles.module.css';
 
 const Header: React.FC = () => {
+  // `usePathname` only works in client components?
+  // returns `undefined` on server
   const pathname = usePathname()
   const isActive: (route: string) => boolean = (route) => pathname === route
 
   return (
     <nav className={styles.header}>
-      <div className="left">
-        <Link href="/" legacyBehavior>
-          <a className="bold" data-active={isActive('/')}>
-            Blog
-          </a>
+      <div className={styles.left}>
+        <Link className={styles.bold} data-active={isActive('/')} href="/">
+          Blog
         </Link>
-        <Link href="/drafts" legacyBehavior>
-          <a data-active={isActive('/drafts')}>Drafts</a>
+        <Link data-active={isActive('/drafts')} href="/drafts">
+          Drafts
         </Link>
       </div>
-      <div className="right">
-        <Link href="/signup" legacyBehavior>
-          <a data-active={isActive('/signup')}>Signup</a>
+      <div className={styles.right}>
+        <Link data-active={isActive('/signup')} href="/signup">
+          Signup
         </Link>
-        <Link href="/create" legacyBehavior>
-          <a data-active={isActive('/create')}>+ Create draft</a>
+        <Link data-active={isActive('/create')} href="/create">
+          + Create draft
         </Link>
       </div>
     </nav>
